@@ -8,6 +8,8 @@ import ViewSlots from "@/components/ViewSlots";
 export default function BookingPage() {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [whatsapp, setWhatsapp] = useState("");
 
   return (
     <>
@@ -22,8 +24,12 @@ export default function BookingPage() {
       <div className="max-w-6xl mx-auto px-6 py-10 grid md:grid-cols-2 gap-8">
 
         <BookingForm
+          teamName={teamName}
+          whatsapp={whatsapp}
           selectedDate={selectedDate}
           selectedTime={selectedTime}
+          setTeamName={setTeamName}
+          setWhatsapp={setWhatsapp}
           setSelectedDate={setSelectedDate}
           setSelectedTime={setSelectedTime}
         />
