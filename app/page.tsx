@@ -1,3 +1,6 @@
+"use client";
+import { useState } from "react";
+
 import Link from "next/link";
 import {
   ShieldCheck,
@@ -11,10 +14,17 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
+import StatsSection from "@/components/StatsSection";
+import CountUp from "react-countup";
+import BookingForm from "@/components/BookingForm";
+import GoogleMap from "@/components/GoogleMap";
 
 export default function HomePage() {
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
+  
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-gray-100">
 
       {/* HERO SECTION */}
       <section
@@ -58,110 +68,32 @@ export default function HomePage() {
 
           {/* RIGHT SIDE - BOOKING FORM */}
           <div className="w-full max-w-sm ml-auto">
-
-            <div className="bg-white p-6 rounded-lg shadow-lg text-[#020f22]">
-
-              <h2 className="text-xl font-bold mb-4">
-                Quick Booking Request
-              </h2>
-
-              <form className="space-y-4">
-
-                {/* NAME */}
-                <input
-                  type="text"
-                  placeholder="Full Name"
-                  className="w-full p-3 border border-black/50 rounded-md outline-none focus:border-[#4ebd45] transition"
-                />
-
-                {/* PHONE */}
-                <input
-                  type="text"
-                  placeholder="Phone Number"
-                  className="w-full p-3 border border-black/50 rounded-md outline-none focus:border-[#4ebd45] transition"
-                />
-
-                {/* DATE */}
-                <input
-                  type="date"
-                  className="w-full p-3 border border-black/50 rounded-md outline-none focus:border-[#4ebd45] transition appearance-none"
-                />
-
-                {/* TIME */}
-                <select className="w-full p-3 border border-black/50 rounded-md outline-none focus:border-[#4ebd45] transition">
-                   <option value="06:00 - 07:00">06:00 - 07:00</option>
-                  <option value="07:00 - 08:00">07:00 - 08:00</option>
-                  <option value="08:00 - 09:00">08:00 - 09:00</option>
-                  <option value="09:00 - 10:00">09:00 - 10:00</option>
-                  <option value="10:00 - 11:00">10:00 - 11:00</option>
-                  <option value="11:00 - 12:00">11:00 - 12:00</option>
-
-                  <option value="12:00 - 13:00">12:00 - 13:00</option>
-                  <option value="13:00 - 14:00">13:00 - 14:00</option>
-                  <option value="14:00 - 15:00">14:00 - 15:00</option>
-                  <option value="15:00 - 16:00">15:00 - 16:00</option>
-                  <option value="16:00 - 17:00">16:00 - 17:00</option>
-                  <option value="17:00 - 18:00">17:00 - 18:00</option>
-
-                  <option value="18:00 - 19:00">18:00 - 19:00</option>
-                  <option value="19:00 - 20:00">19:00 - 20:00</option>
-                  <option value="20:00 - 21:00">20:00 - 21:00</option>
-                </select>
-
-                {/* SUBMIT BUTTON (SECONDARY COLOR) */}
-                <button
-                  type="button"
-                  className="w-full bg-[#b12526] text-white p-3 rounded-md font-bold hover:opacity-90 transition"
-                >
-                  Request Booking
-                </button>
-
-              </form>
-
-            </div>
-
+            <BookingForm
+              selectedDate={selectedDate}
+              selectedTime={selectedTime}
+              setSelectedDate={setSelectedDate}
+              setSelectedTime={setSelectedTime}   // 🔥 THIS MUST EXIST
+            />
           </div>
 
         </div>
 
       </section>
 
-      {/* IMAGE SLIDER STRIP */}
-      <section className="w-full overflow-hidden bg-white pt-6 pb-6">
-
-        <div className="flex w-max animate-scroll gap-3">
-
-          <img src="/gallery/1.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/2.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/3.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/4.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/5.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/6.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          
-
-          <img src="/gallery/1.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/2.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/3.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/4.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/5.jpg" className="h-64 w-80 object-cover rounded-lg" />
-          <img src="/gallery/6.jpg" className="h-64 w-80 object-cover rounded-lg" />
-
-        </div>
-
-      </section>
-
+      {/* STATS SECTION */}
+      <StatsSection />
 
       {/* WHY CHOOSE US */}
-      <section className="bg-[#4ebd45] py-16">
+      <section className="py-20 bg-gray-100">
 
         <div className="max-w-6xl mx-auto px-6">
 
           {/* TITLE */}
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#b12526] text-center">
             Why Choose The Dstrict Sports Arena
           </h2>
 
-          <p className="text-center text-white/90 mt-3">
+          <p className="text-gray-600 text-center mt-3">
             Built for players, teams, and communities who want the best football experience
           </p>
 
@@ -172,7 +104,7 @@ export default function HomePage() {
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
               <ShieldCheck
                 size={30}
-                className="text-[#b12526] mb-4"
+                className="text-[#4ebd45] mb-2"
               />
 
               <h3 className="text-xl font-bold text-[#020f22]">
@@ -188,7 +120,7 @@ export default function HomePage() {
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
               <Trophy
                 size={30}
-                className="text-[#b12526] mb-4"
+                className="text-[#4ebd45] mb-4"
               />
 
               <h3 className="text-xl font-bold text-[#020f22]">
@@ -204,7 +136,7 @@ export default function HomePage() {
             <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
               <Clock3
                 size={30}
-                className="text-[#b12526] mb-4"
+                className="text-[#4ebd45] mb-4"
               />
 
               <h3 className="text-xl font-bold text-[#020f22]">
@@ -222,18 +154,17 @@ export default function HomePage() {
 
       </section>
 
-
       {/* OUR FACILITIES */}
-      <section className="py-20 bg-gray-100">
+      <section className="py-20 bg-[#4ebd45]">
 
         <div className="max-w-6xl mx-auto px-6">
 
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#020f22]">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-white">
               Our Facilities
             </h2>
 
-            <p className="text-gray-600 mt-3">
+            <p className="text-white mt-3">
               Everything you need for a great football experience.
             </p>
           </div>
@@ -299,6 +230,48 @@ export default function HomePage() {
       </section>
 
 
+      {/* IMAGE SLIDER STRIP */}
+      <section className="w-full bg-white py-10">
+
+        {/* HEADER (like Why Choose Us style) */}
+        <div className="max-w-6xl mx-auto px-6 text-center mb-6">
+
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#020f22]">
+            Moments From The Pitch
+          </h2>
+
+          <p className="text-gray-600 mt-3">
+            Real games, training sessions, and community football at The Dstrict Sports Arena
+          </p>
+
+        </div>
+
+        {/* SLIDER */}
+        <div className="overflow-hidden">
+
+          <div className="flex w-max animate-scroll gap-3">
+
+            <img src="/gallery/1.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/2.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/3.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/4.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/5.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/6.jpg" className="h-64 w-80 object-cover rounded-lg" />
+
+            <img src="/gallery/1.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/2.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/3.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/4.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/5.jpg" className="h-64 w-80 object-cover rounded-lg" />
+            <img src="/gallery/6.jpg" className="h-64 w-80 object-cover rounded-lg" />
+
+          </div>
+
+        </div>
+
+      </section>
+
+
       {/* CTA SECTION */}
       <section className="bg-[#b12526] py-20">
 
@@ -332,6 +305,11 @@ export default function HomePage() {
 
         </div>
 
+      </section>
+
+      {/* Google Maps */}
+      <section>
+        <GoogleMap />
       </section>
 
     </main>

@@ -10,7 +10,7 @@ import {
 export default function Footer() {
   return (
     <footer className="bg-[#020f22] text-white">
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-6xl mx-auto px-6 py-12">
         <div className="grid md:grid-cols-3 gap-10">
 
           {/* ABOUT */}
@@ -129,7 +129,7 @@ export default function Footer() {
               <div className="flex gap-4">
 
                 <a
-                  href="#"
+                  href="https://web.facebook.com/thedstrictmw/"
                   className="text-white hover:text-[#4ebd45] transition"
                 >
                   <FaFacebookF size={20} />
