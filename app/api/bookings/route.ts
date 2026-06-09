@@ -1,16 +1,15 @@
 import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
-// GET BOOKINGS
+/* ======================================================
+   GET BOOKINGS (USED BY ViewSlots)
+====================================================== */
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-
     const date = searchParams.get("date");
 
-    let query = supabase
-      .from("bookings")
-      .select("*");
+    let query = supabase.from("bookings").select("*");
 
     if (date) {
       query = query.eq("booking_date", date);
@@ -18,12 +17,21 @@ export async function GET(request: Request) {
 
     const { data, error } = await query;
 
-    if (error) throw error;
+    if (error) {
+      console.error("GET BOOKINGS ERROR:", error);
 
-    return NextResponse.json(data);
+      return NextResponse.json(
+        {
+          success: false,
+          message: error.message,
+        },
+        { status: 400 }
+      );
+    }
 
-  } catch (error) {
-    console.error(error);
+    return NextResponse.json(data || []);
+  } catch (error: any) {
+    console.error("SERVER ERROR (GET):", error);
 
     return NextResponse.json(
       {
@@ -35,16 +43,31 @@ export async function GET(request: Request) {
   }
 }
 
-// CREATE BOOKING
+/* ======================================================
+   CREATE BOOKING (USED BY BookingForm)
+====================================================== */
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    let body;
+
+    try {
+      body = await request.json();
+    } catch (err) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Invalid request body",
+        },
+        { status: 400 }
+      );
+    }
 
     const {
       team_name,
       whatsapp,
       booking_date,
       booking_time,
+      duration,
     } = body;
 
     const { data, error } = await supabase
@@ -55,29 +78,42 @@ export async function POST(request: Request) {
           whatsapp,
           booking_date,
           booking_time,
+          duration,
         },
       ])
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error("SUPABASE ERROR:", error);
 
-    // Mark slot unavailable (if you still use slots table)
-    await supabase
-      .from("slots")
-      .update({
-        available: false,
-      })
-      .eq("slot_date", booking_date)
-      .eq("slot_time", booking_time);
+      // Duplicate slot error (unique constraint)
+      if (error.code === "23505") {
+        return NextResponse.json(
+          {
+            success: false,
+            message:
+              "This slot is already booked. Please choose another time.",
+          },
+          { status: 409 }
+        );
+      }
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: error.message,
+        },
+        { status: 400 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
       booking: data,
     });
-
-  } catch (error) {
-    console.error(error);
+  } catch (error: any) {
+    console.error("SERVER ERROR (POST):", error);
 
     return NextResponse.json(
       {

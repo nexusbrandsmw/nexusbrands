@@ -5,72 +5,142 @@ import { useEffect, useState } from "react";
 export default function ViewSlots({
   selectedDate,
   setSelectedDate,
+  selectedTime,
   setSelectedTime,
 }: any) {
-  const [slots, setSlots] = useState<any[]>([]);
+  const [bookings, setBookings] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+
+  // Generate all 24 hours
+  const ALL_SLOTS = Array.from(
+    { length: 24 },
+    (_, i) => `${i.toString().padStart(2, "0")}:00`
+  );
 
   useEffect(() => {
     if (!selectedDate) return;
 
-    fetchSlots();
+    fetchBookings();
   }, [selectedDate]);
 
-  const fetchSlots = async () => {
-    try {
-      setLoading(true);
+  // ✅ FETCH BOOKINGS FROM SUPABASE (via API)
+    const fetchBookings = async () => {
+      try {
+        setLoading(true);
 
-      const res = await fetch(
-        `/api/slots?date=${selectedDate}`
-      );
+        const response = await fetch(
+          `/api/bookings?date=${selectedDate}`
+        );
 
-      const data = await res.json();
+        const data = await response.json();
 
-      setSlots(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
+        setBookings(data || []);
+      } catch (error) {
+        console.error("Failed to fetch bookings:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // ✅ CHECK IF SLOT IS BOOKED
+    const isBooked = (slot: string) => {
+    const slotHour = Number(slot.split(":")[0]);
+
+    return bookings.some((booking: any) => {
+      const startHour = Number(booking.booking_time.split(":")[0]);
+      const durationHours = (booking.duration || 60) / 60;
+      const endHour = startHour + durationHours;
+
+      return slotHour >= startHour && slotHour < endHour;
+    });
   };
 
   return (
     <div className="bg-white p-6 rounded-3xl shadow-lg">
 
+      {/* TITLE */}
       <h2 className="text-xl font-bold text-[#b12526] mb-4">
         View Available Slots
       </h2>
 
-      <input
-        type="date"
-        value={selectedDate}
-        onChange={(e) =>
-          setSelectedDate(e.target.value)
-        }
-        className="w-full p-3 border border-black/50 rounded-2xl mb-4"
-      />
+      {/* DATE */}
+      <div className="mb-4">
+        <label className="block mb-2 font-medium text-black">
+          Select Date
+        </label>
 
-      {loading && (
-        <p>Loading slots...</p>
-      )}
-
-      {!loading && slots.length === 0 && (
-        <p>No slots available.</p>
-      )}
-
-      <div className="space-y-2">
-        {slots.map((slot) => (
-          <button
-            key={slot.id}
-            onClick={() =>
-              setSelectedTime(slot.slot_time)
-            }
-            className="w-full p-3 rounded-2xl border border-[#4ebd45] hover:bg-[#4ebd45] hover:text-white transition"
-          >
-            {slot.slot_time}
-          </button>
-        ))}
+        <input
+          type="date"
+          value={selectedDate || ""}
+          onChange={(e) => {
+            setSelectedDate(e.target.value);
+            setSelectedTime("");
+          }}
+          className="w-full p-3 border border-black/50 rounded-2xl bg-white text-black"
+        />
       </div>
+
+      {/* LOADING */}
+      {loading && (
+        <p className="text-gray-500 mb-4">
+          Loading slots...
+        </p>
+      )}
+
+      {/* TIME SELECT */}
+      {!loading && selectedDate && (
+        <div>
+          <label className="block mb-2 font-medium text-black">
+            Select Time
+          </label>
+
+          <select
+            value={selectedTime}
+            onChange={(e) => setSelectedTime(e.target.value)}
+            className="w-full p-3 border border-black/50 rounded-2xl bg-white text-black"
+          >
+            <option value="">
+              Select Time
+            </option>
+
+            {ALL_SLOTS.map((slot) => {
+              const booked = isBooked(slot);
+
+              return (
+                <option
+                  key={slot}
+                  value={slot}
+                  disabled={booked}
+                  style={{
+                    color: booked ? "red" : "green",
+                    fontWeight: 500,
+                  }}
+                >
+                  {slot} - {booked ? "Booked" : "Available"}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      )}
+
+      {/* BOOKING MESSAGE */}
+      {selectedDate && selectedTime && (
+        <div className="mt-6 p-4 bg-[#4ebd45]/10 border border-[#4ebd45] rounded-2xl">
+
+          <p className="text-black">
+            The selected slot on{" "}
+            <span className="font-semibold">
+              {selectedDate}
+            </span>{" "}
+            at{" "}
+            <span className="font-semibold">
+              {selectedTime}
+            </span>{" "}
+            is available. Please fill in the booking form to reserve this slot.
+          </p>
+        </div>
+      )}
 
     </div>
   );

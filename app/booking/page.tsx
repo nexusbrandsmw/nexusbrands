@@ -10,6 +10,7 @@ export default function BookingPage() {
   const [selectedTime, setSelectedTime] = useState("");
   const [teamName, setTeamName] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
+  const [duration, setDuration] = useState(60);
 
   return (
     <>
@@ -28,6 +29,8 @@ export default function BookingPage() {
           whatsapp={whatsapp}
           selectedDate={selectedDate}
           selectedTime={selectedTime}
+          duration={duration}
+          setDuration={setDuration}
           setTeamName={setTeamName}
           setWhatsapp={setWhatsapp}
           setSelectedDate={setSelectedDate}
