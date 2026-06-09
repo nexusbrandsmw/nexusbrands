@@ -36,6 +36,7 @@ export default function BookingPage() {
 
         <ViewSlots
           selectedDate={selectedDate}
+          selectedTime={selectedTime}
           setSelectedDate={setSelectedDate}
           setSelectedTime={setSelectedTime}
         />
