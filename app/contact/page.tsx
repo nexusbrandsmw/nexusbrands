@@ -1,115 +1,129 @@
+"use client";
+
+import { useState } from "react";
 import PageHeader from "@/components/PageHeader";
-import GoogleMap from "@/components/GoogleMap";
+import { FaWhatsapp } from "react-icons/fa";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function ContactPage() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log(form);
+  };
+
   return (
     <>
       {/* HEADER */}
       <PageHeader
-        title="Contact Us"
-        subtitle="Get in touch with The Dstrict Sports Arena for bookings, inquiries, and partnerships."
-        backgroundImage="/images/contact-bg.jpg"
+        label="Contact"
+        title="Let’s build something great together"
+        subtitle="Tell us about your project and we’ll respond as soon as possible."
       />
 
-      {/* PAGE BACKGROUND WRAPPER */}
-      <div className="bg-gray-100">
+      {/* CONTACT SECTION */}
+      <section className="py-24 bg-accent">
+        <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12">
 
-        {/* CONTACT SECTION */}
-        <div className="max-w-6xl mx-auto px-6 py-12 grid md:grid-cols-2 gap-10 text-[#020f22]">
+          {/* LEFT INFO */}
+          <div>
+            <h2 className="text-3xl font-bold text-[#000f22]">
+              Get in touch
+            </h2>
 
-          {/* LEFT SIDE - INFO */}
-          <div className="space-y-6">
+            <p className="mt-4 text-[#000f22]/70">
+              We respond quickly and help you choose the right solution for your business.
+            </p>
 
-            {/* CARD CONTAINER */}
-            <div className="space-y-6">
+            <div className="mt-10 space-y-6">
 
-              {/* OUTLINE CARD ONLY */}
-              <div className="border border-gray-300 rounded-2xl p-6">
-
-                <h2 className="text-2xl font-bold mb-6 text-[#020f22]">
-                  Reach Us Directly
-                </h2>
-
-                {/* PHONE */}
-                <div className="flex items-start gap-3 mb-4">
-                  <Phone className="text-[#4ebd45] mt-1" />
-                  <p>+265 994 150 446</p>
-                </div>
-
-                {/* EMAIL */}
-                <div className="flex items-start gap-3 mb-4">
-                  <Mail className="text-[#4ebd45] mt-1" />
-                  <p>info@thedstrict.com</p>
-                </div>
-
-                {/* LOCATION */}
-                <div className="flex items-start gap-3 mb-6">
-                  <MapPin className="text-[#4ebd45] mt-1" />
-                  <p>Area 46, Grand Business Park, Lilongwe</p>
-                </div>
-
-                {/* WHATSAPP BUTTON */}
-                <a
-                  href="https://wa.me/265994150446"
-                  target="_blank"
-                  className="inline-block bg-[#25D366] text-white px-5 py-2 rounded-xl font-semibold hover:opacity-90 transition"
-                >
-                  Chat on WhatsApp
-                </a>
-
+              <div className="flex items-center gap-4">
+                <Phone className="text-[#e01e41]" />
+                <span className="text-[#000f22]/70">+265 884 831 850</span>
               </div>
+
+              <div className="flex items-center gap-4">
+                <Mail className="text-[#e01e41]" />
+                <span className="text-[#000f22]/70">info@nexusbrandsmw.com</span>
+              </div>
+
+              <div className="flex items-center gap-4">
+                <MapPin className="text-[#e01e41]" />
+                <span className="text-[#000f22]/70">Area 47/2 Lilongwe, Malawi</span>
+              </div>
+
+              {/* WHATSAPP CTA */}
+              <a
+                href="https://wa.me/265994150446"
+                target="_blank"
+                className="inline-flex items-center gap-2 mt-6 bg-green-500 text-white px-5 py-3 rounded-full hover:opacity-90 transition"
+              >
+                <FaWhatsapp />
+                Chat on WhatsApp
+              </a>
 
             </div>
           </div>
 
-          {/* RIGHT SIDE - FORM */}
-          <div className="bg-white p-6 rounded-2xl shadow-lg">
+          {/* RIGHT FORM */}
+          <form
+            onSubmit={handleSubmit}
+            className="bg-secondary p-8 rounded-2xl border border-[#000f22]/10"
+          >
+            <div className="space-y-5">
 
-            <h2 className="text-xl font-bold mb-4">
-              Send a Message
-            </h2>
-
-            <form className="space-y-4">
+              <h2 className="text-3xl py-5 font-bold text-accent">
+                Send a Message
+              </h2>
 
               <input
                 type="text"
+                name="name"
                 placeholder="Your Name"
-                className="w-full p-3 border rounded-xl outline-none focus:border-[#4ebd45]"
+                value={form.name}
+                onChange={handleChange}
+                className="w-full p-3 rounded-xl border border-accent/50 focus:outline-none focus:border-[#e01e41]"
               />
 
               <input
                 type="email"
+                name="email"
                 placeholder="Your Email"
-                className="w-full p-3 border rounded-xl outline-none focus:border-[#4ebd45]"
+                value={form.email}
+                onChange={handleChange}
+                className="w-full p-3 rounded-xl border border-accent/50 focus:outline-none focus:border-[#e01e41]"
               />
 
               <textarea
+                name="message"
                 placeholder="Your Message"
-                rows={2}
-                className="w-full p-3 border rounded-xl outline-none focus:border-[#4ebd45]"
+                value={form.message}
+                onChange={handleChange}
+                rows={6}
+                className="w-full p-3 rounded-xl border border-accent/50 focus:outline-none focus:border-[#e01e41]"
               />
 
               <button
-                type="button"
-                className="w-full bg-[#b12526] text-white p-3 rounded-xl font-bold hover:opacity-90 transition"
+                type="submit"
+                className="w-full bg-[#e01e41] text-white py-3 rounded-xl font-medium hover:opacity-90 transition"
               >
                 Send Message
               </button>
 
-            </form>
-
-          </div>
+            </div>
+          </form>
 
         </div>
-
-        {/* MAP SECTION */}
-        <div className="max-w-6xl mx-auto px-6 pb-12">
-  
-          <GoogleMap />
-        </div>
-
-      </div>
+      </section>
     </>
   );
 }

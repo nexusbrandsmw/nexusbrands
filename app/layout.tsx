@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import ClientLayout from "@/components/ClientLayout";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -11,8 +10,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "The District Sports Arena",
-  description: "Book football pitch sessions online",
+  title: "Nexus Brands",
+  description: "Marketing, Branding & Digital Solutions",
 };
 
 export default function RootLayout({
@@ -22,10 +21,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.variable}>
-      <body className="min-h-screen flex flex-col font-[var(--font-poppins)] bg-white text-[#020f22] m-0 p-0">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

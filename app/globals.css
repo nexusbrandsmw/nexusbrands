@@ -1,24 +1,46 @@
 @import "tailwindcss";
 
+/* ===========================
+   Root Colors
+=========================== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fef5d2;
+  --foreground: #000f22;
 }
 
+/* ===========================
+   Tailwind Theme Variables
+=========================== */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* ===========================
+   Nexus Brands Color Palette
+=========================== */
+@theme {
+  --color-primary: #e01e41;
+  --color-secondary: #000f22;
+  --color-accent: #fef5d2;
+}
+
+/* ===========================
+   Dark Mode
+=========================== */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #D3D3D3;
-    --foreground: #ededed;
+    --background: #000f22;
+    --foreground: #fef5d2;
   }
 }
 
+/* ===========================
+   Global Styles
+=========================== */
 body {
   background: var(--background);
   color: var(--foreground);
@@ -28,10 +50,15 @@ body {
   width: 100%;
 }
 
+
+/* ===========================
+   Infinite Logo Scroll Animation
+=========================== */
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -40,4 +67,39 @@ body {
 .animate-scroll {
   display: flex;
   animation: scroll 50s linear infinite;
+}
+
+/* Pause animation when hovered */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Trusted By */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* About Bottom Line */
+@keyframes values {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-values {
+  animation: values 35s linear infinite;
 }

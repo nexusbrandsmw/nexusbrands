@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function BookingForm({
   teamName,
@@ -13,13 +13,60 @@ export default function BookingForm({
   setSelectedDate,
   setSelectedTime,
   setDuration,
-}: any) {
+}: {
+  teamName: string;
+  whatsapp: string;
+  selectedDate: string;
+  selectedTime: string;
+  duration: number;
+  setTeamName: (v: string) => void;
+  setWhatsapp: (v: string) => void;
+  setSelectedDate: (v: string) => void;
+  setSelectedTime: (v: string) => void;
+  setDuration: (v: number) => void;
+}) {
+  type Booking = { booking_time: string };
 
+
+  const [bookings, setBookings] = useState<Booking[]>([]);
+  const [loadingBookings, setLoadingBookings] = useState(false);
+
+  // =========================
+  // GENERATE 24 HOURS
+  // =========================
   const ALL_SLOTS = Array.from(
     { length: 24 },
     (_, i) => `${i.toString().padStart(2, "0")}:00`
   );
 
+  // =========================
+  // FETCH BOOKINGS BY DATE
+  // =========================
+  useEffect(() => {
+    if (!selectedDate) return;
+
+    const fetchBookings = async () => {
+      try {
+        setLoadingBookings(true);
+
+        const res = await fetch(`/api/bookings?date=${selectedDate}`);
+        const data = await res.json();
+
+        setBookings(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error("Failed to fetch bookings:", error);
+        setBookings([]);
+      } finally {
+        setLoadingBookings(false);
+      }
+    };
+
+    fetchBookings();
+  }, [selectedDate]);
+
+  // =========================
+  // SUBMIT BOOKING
+  // =========================
   const handleBooking = async () => {
     try {
       const response = await fetch("/api/bookings", {
@@ -38,26 +85,24 @@ export default function BookingForm({
 
       const text = await response.text();
 
-      let data = {};
+      let data: { message?: string } = {};
       try {
         data = text ? JSON.parse(text) : {};
-      } catch (e) {
-        console.error("Invalid JSON from API:", text);
-        alert("Server error. Try again.");
+      } catch {
+        alert("Server error. Invalid response.");
         return;
       }
 
-      // 🚨 CLEAN ERROR HANDLING (BOOKED SLOT POPUP)
       if (!response.ok) {
-        alert(data.message || "This slot is already booked. Please choose another time.");
+        alert(data.message || "This slot is already booked.");
         return;
       }
 
-      alert("Booking request submitted successfully!");
+      alert("Booking successful!");
 
     } catch (error) {
       console.error(error);
-      alert("Something went wrong. Please try again.");
+      alert("Something went wrong.");
     }
   };
 
@@ -96,7 +141,7 @@ export default function BookingForm({
           className="w-full p-3 border border-black/50 rounded-2xl outline-none focus:border-[#4ebd45]"
         />
 
-        {/* TIME (24 HOURS) */}
+        {/* TIME SLOT (24H + BOOKED STATUS) */}
         <select
           value={selectedTime}
           onChange={(e) => setSelectedTime(e.target.value)}
@@ -104,11 +149,22 @@ export default function BookingForm({
         >
           <option value="">Select Time Slot</option>
 
-          {ALL_SLOTS.map((slot) => (
-            <option key={slot} value={slot}>
-              {slot}
-            </option>
-          ))}
+          {ALL_SLOTS.map((slot) => {
+            const booked = bookings.some((b) => b.booking_time === slot);
+
+            return (
+              <option
+                key={slot}
+                value={slot}
+                disabled={booked}
+                style={{
+                  color: booked ? "red" : "black",
+                }}
+              >
+                {slot} {booked ? "— Booked" : ""}
+              </option>
+            );
+          })}
         </select>
 
         {/* DURATION */}
@@ -122,9 +178,7 @@ export default function BookingForm({
             min={60}
             step={30}
             value={duration}
-            onChange={(e) =>
-              setDuration(Number(e.target.value))
-            }
+            onChange={(e) => setDuration(Number(e.target.value))}
             className="w-full p-3 border border-black/50 rounded-2xl outline-none focus:border-[#4ebd45]"
           />
 
@@ -133,13 +187,12 @@ export default function BookingForm({
           </p>
 
           <p className="text-sm font-medium text-[#4ebd45] mt-2">
-            Selected duration:{" "}
-            {Math.floor(duration / 60)}h
-            {duration % 60 !== 0 ? ` ${duration % 60}m` : ""}
+            Selected duration: {Math.floor(duration / 60)}h{" "}
+            {duration % 60 !== 0 ? `${duration % 60}m` : ""}
           </p>
         </div>
 
-        {/* SUBMIT BUTTON */}
+        {/* SUBMIT */}
         <button
           type="button"
           onClick={handleBooking}

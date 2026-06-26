@@ -1,0 +1,52 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  client      String
+  industry    String
+  timeline    String
+  description String   @db.Text
+  challenge   String   @db.Text
+  solution    String   @db.Text
+  outcome     String   @db.Text
+  services    Json
+  images      ProjectImage[]
+  createdAt   DateTime @default(now())
+}
+
+model ProjectImage {
+  id        Int     @id @default(autoincrement())
+  url       String
+  projectId Int
+  project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  imageUrl    String
+  category    String
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+

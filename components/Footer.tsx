@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import {
@@ -8,182 +11,112 @@ import {
 } from "react-icons/fa6";
 
 export default function Footer() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Trigger only when footer starts entering viewport
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    const current = ref.current;
+    if (current) observer.observe(current);
+
+    return () => {
+      if (current) observer.unobserve(current);
+    };
+  }, []);
+
   return (
-    <footer className="bg-[#020f22] text-white">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        <div className="grid md:grid-cols-3 gap-10">
+    <footer className="bg-secondary text-white">
+      <div
+        ref={ref}
+        className={`max-w-6xl mx-auto px-6 py-12 transition-all duration-700 ease-out ${
+          visible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-16"
+        }`}
+      >
+        <div className="grid gap-10 md:grid-cols-3">
 
           {/* ABOUT */}
           <div>
-            <h3 className="text-[#4ebd45] text-xl font-bold mb-4">
-              The Dstrict Sports Arena
+            <h3 className="mb-4 text-xl font-bold text-primary">
+              Nexus Brands
             </h3>
-
-            <p className="text-white/80 leading-relaxed">
-              A premium football facility providing quality sporting experiences
-              for individuals, teams, schools, organizations, and the wider
-              community.
+            <p className="leading-relaxed text-white/80">
+              Building brands forward through branding, graphic design,
+              website development, digital marketing, and business consultancy.
             </p>
           </div>
 
           {/* QUICK LINKS */}
           <div>
-            <h3 className="text-[#4ebd45] text-xl font-bold mb-4">
+            <h3 className="mb-4 text-xl font-bold text-primary">
               Quick Links
             </h3>
 
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="/"
-                  className="text-white/80 hover:text-[#4ebd45] transition"
-                >
-                  Home
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/about"
-                  className="text-white/80 hover:text-[#4ebd45] transition"
-                >
-                  About
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/booking"
-                  className="text-white/80 hover:text-[#4ebd45] transition"
-                >
-                  Booking
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-white/80 hover:text-[#4ebd45] transition"
-                >
-                  Contact
-                </Link>
-              </li>
+              <li><Link href="/" className="hover:text-primary text-white/80">Home</Link></li>
+              <li><Link href="/about" className="hover:text-primary text-white/80">About</Link></li>
+              <li><Link href="/services" className="hover:text-primary text-white/80">Services</Link></li>
+              <li><Link href="/contact" className="hover:text-primary text-white/80">Contact</Link></li>
             </ul>
           </div>
 
           {/* CONTACT */}
           <div>
-            <h3 className="text-[#4ebd45] text-xl font-bold mb-4">
+            <h3 className="mb-4 text-xl font-bold text-primary">
               Contact Us
             </h3>
 
             <div className="space-y-4">
 
-              {/* PHONE */}
-              <div className="flex items-start gap-3">
-                <Phone
-                  size={20}
-                  className="text-[#4ebd45] mt-1 flex-shrink-0"
-                />
-
-                <a
-                  href="tel:+265994150446"
-                  className="text-white/80 hover:text-[#4ebd45] transition"
-                >
-                  +265 994 150 446
+              <div className="flex gap-3">
+                <Phone className="text-primary mt-1" size={20} />
+                <a href="tel:+265994150446" className="text-white/80 hover:text-primary">
+                  +265 884 831 850
                 </a>
               </div>
 
-              {/* EMAIL */}
-              <div className="flex items-start gap-3">
-                <Mail
-                  size={20}
-                  className="text-[#4ebd45] mt-1 flex-shrink-0"
-                />
-
-                <a
-                  href="mailto:info@thedstrict.com"
-                  className="text-white/80 hover:text-[#4ebd45] transition"
-                >
-                  info@thedstrict.com
+              <div className="flex gap-3">
+                <Mail className="text-primary mt-1" size={20} />
+                <a href="mailto:info@nexusbrandsmw.com" className="text-white/80 hover:text-primary">
+                  info@nexusbrandsmw.com
                 </a>
               </div>
 
-              {/* LOCATION */}
-              <div className="flex items-start gap-3">
-                <MapPin
-                  size={20}
-                  className="text-[#4ebd45] mt-1 flex-shrink-0"
-                />
-
+              <div className="flex gap-3">
+                <MapPin className="text-primary mt-1" size={20} />
                 <span className="text-white/80">
-                  Area 46, Grand Business Park, Lilongwe
+                  Area 47/2 Lilongwe, Malawi
                 </span>
               </div>
 
             </div>
 
-            {/* SOCIAL MEDIA */}
-            <div className="pt-4">
-              <br></br>
-              <div className="flex gap-4">
-
-                <a
-                  href="https://web.facebook.com/thedstrictmw/"
-                  className="text-white hover:text-[#4ebd45] transition"
-                >
-                  <FaFacebookF size={20} />
-                </a>
-
-                <a
-                  href="#"
-                  className="text-white hover:text-[#4ebd45] transition"
-                >
-                  <FaInstagram size={20} />
-                </a>
-
-                <a
-                  href="#"
-                  className="text-white hover:text-[#4ebd45] transition"
-                >
-                  <FaLinkedinIn size={20} />
-                </a>
-
-                <a
-                  href="#"
-                  className="text-white hover:text-[#4ebd45] transition"
-                >
-                  <FaTiktok size={20} />
-                </a>
-
-              </div>
+            {/* SOCIAL */}
+            <div className="pt-6 flex gap-4">
+              <FaFacebookF className="hover:text-primary cursor-pointer" />
+              <FaInstagram className="hover:text-primary cursor-pointer" />
+              <FaLinkedinIn className="hover:text-primary cursor-pointer" />
+              <FaTiktok className="hover:text-primary cursor-pointer" />
             </div>
           </div>
 
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="border-t border-white/10 mt-10 pt-6">
-          <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
-
-            <p className="text-white/60 text-sm">
-              © {new Date().getFullYear()} The Dstrict Sports Arena
-            </p>
-
-            <p className="text-white/60 text-sm">
-              Developed by{" "}
-              <a
-                href="https://nexusbrandsmw.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#4ebd45] hover:text-white transition font-medium"
-              >
-                Nexus Brands Mw
-              </a>
-            </p>
-
-          </div>
-
+        {/* BOTTOM */}
+        <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-white/60">
+          © {new Date().getFullYear()} Nexus Brands. All rights reserved.
         </div>
       </div>
     </footer>

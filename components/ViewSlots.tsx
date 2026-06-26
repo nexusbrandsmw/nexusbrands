@@ -2,13 +2,23 @@
 
 import { useEffect, useState } from "react";
 
+type Booking = {
+  booking_time: string;
+  duration?: number;
+};
+
 export default function ViewSlots({
   selectedDate,
   setSelectedDate,
   selectedTime,
   setSelectedTime,
-}: any) {
-  const [bookings, setBookings] = useState<any[]>([]);
+}: {
+  selectedDate: string;
+  setSelectedDate: (v: string) => void;
+  selectedTime: string;
+  setSelectedTime: (v: string) => void;
+}) {
+  const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(false);
 
   // Generate all 24 hours
@@ -17,36 +27,34 @@ export default function ViewSlots({
     (_, i) => `${i.toString().padStart(2, "0")}:00`
   );
 
+  // ✅ FETCH BOOKINGS FROM SUPABASE (via API)
+  const fetchBookings = async () => {
+    try {
+      setLoading(true);
+
+      const response = await fetch(`/api/bookings?date=${selectedDate}`);
+      const data = (await response.json()) as Booking[];
+
+      setBookings(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error("Failed to fetch bookings:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (!selectedDate) return;
 
-    fetchBookings();
+    void fetchBookings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate]);
-
-  // ✅ FETCH BOOKINGS FROM SUPABASE (via API)
-    const fetchBookings = async () => {
-      try {
-        setLoading(true);
-
-        const response = await fetch(
-          `/api/bookings?date=${selectedDate}`
-        );
-
-        const data = await response.json();
-
-        setBookings(data || []);
-      } catch (error) {
-        console.error("Failed to fetch bookings:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
 
     // ✅ CHECK IF SLOT IS BOOKED
     const isBooked = (slot: string) => {
     const slotHour = Number(slot.split(":")[0]);
 
-    return bookings.some((booking: any) => {
+    return bookings.some((booking) => {
       const startHour = Number(booking.booking_time.split(":")[0]);
       const durationHours = (booking.duration || 60) / 60;
       const endHour = startHour + durationHours;

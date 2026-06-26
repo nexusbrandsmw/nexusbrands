@@ -1,48 +1,30 @@
-import Link from "next/link";
-
 interface PageHeaderProps {
   title: string;
   subtitle?: string;
-  backgroundImage?: string;
+  description?: string;
+  label?: string;
 }
 
 export default function PageHeader({
   title,
   subtitle,
-  backgroundImage = "/header-bg.jpg",
 }: PageHeaderProps) {
   return (
-    <section
-      className="relative w-full h-[320px] md:h-[300px] flex items-center text-white"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* OVERLAY */}
-      <div className="absolute inset-0 bg-[#020f22]/80" />
+    <section className="relative py-24 bg-white overflow-hidden">
 
       {/* CONTENT */}
-      <div className="relative w-full px-6 md:px-16 lg:px-24">
+      <div className="relative max-w-4xl mx-auto px-6 text-center">
 
         {/* TITLE */}
-        <h1 className="text-3xl md:text-5xl font-extrabold">
+        <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-[#000f22] leading-tight">
           {title}
         </h1>
 
-        {/* SUBTITLE */}
+        {/* DESCRIPTION */}
         {subtitle && (
-          <div className="mt-4 max-w-2xl">
-
-            <p className="text-white/80">
-              {subtitle}
-            </p>
-
-            {/* 🔥 NEW LINE UNDER SUBTITLE */}
-            <div className="mt-4 w-16 h-[3px] bg-[#4ebd45] rounded-full"></div>
-
-          </div>
+          <p className="mt-6 text-lg text-[#000f22]/70 leading-relaxed max-w-2xl mx-auto">
+            {subtitle}
+          </p>
         )}
 
       </div>

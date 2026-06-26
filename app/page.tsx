@@ -1,152 +1,60 @@
 "use client";
-import { useState } from "react";
 
 import Link from "next/link";
-import {
-  ShieldCheck,
-  Trophy,
-  Clock3,
-  Goal,
-  Lightbulb,
-  Car,
-  CalendarDays,
-  Phone,
-  Mail,
-  MapPin,
-} from "lucide-react";
-import StatsSection from "@/components/StatsSection";
-import CountUp from "react-countup";
-import BookingForm from "@/components/BookingForm";
-import GoogleMap from "@/components/GoogleMap";
+import { FaArrowRight } from "react-icons/fa";
+import {Palette, PenTool, Megaphone, Globe, BadgeCheck, ShieldCheck, Medal, Users, Clock, } from "lucide-react";
+import OurWork from "@/components/OurWork";
+import Testimonials from "@/components/Testimonials";
+import CTASection from "@/components/CTA";
 
-export default function HomePage() {
-  const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTime, setSelectedTime] = useState("");
-  
+export default function Hero() {
   return (
-    <main className="min-h-screen bg-gray-100">
-
+    <>
       {/* HERO SECTION */}
-      <section
-        className="relative min-h-[90vh] flex items-center"
-        style={{
-          backgroundImage: "url('/hero.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#fef5d2] text-center">
 
-        {/* LEFT → RIGHT GRADIENT */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
-
-        {/* CONTENT GRID */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-10">
-
-          {/* LEFT SIDE */}
-          <div className="flex flex-col justify-end text-white">
-
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-              Welcome to The Dstrict Sports Arena
-            </h1>
-
-            <p className="mt-4 text-gray-200 text-lg">
-              A modern football facility in Malawi offering pitch bookings,
-              tournaments, events, and community sports experiences.
-            </p>
-
-            {/* VIEW SLOTS BUTTON (PRIMARY COLOR) */}
-            <div className="mt-8">
-              <Link
-                href="/booking"
-                className="bg-[#4ebd45] text-white px-6 py-3 rounded-md font-bold hover:bg-[#3ea83a] transition shadow-md inline-block"
-              >
-                View Available Slots
-              </Link>
-            </div>
-
-          </div>
-
-          {/* RIGHT SIDE - BOOKING FORM */}
-          <div className="w-full max-w-sm ml-auto">
-            <BookingForm
-              selectedDate={selectedDate}
-              selectedTime={selectedTime}
-              setSelectedDate={setSelectedDate}
-              setSelectedTime={setSelectedTime}   // 🔥 THIS MUST EXIST
-            />
-          </div>
-
+        {/* BACKGROUND GLOW */}
+        <div className="absolute inset-0">
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#e01e41]/10 blur-[140px] rounded-full" />
+          <div className="absolute bottom-[-200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#000f22]/10 blur-[140px] rounded-full" />
         </div>
 
-      </section>
+        {/* CONTENT */}
+        <div className="relative z-10 max-w-3xl mx-auto px-6">
 
-      {/* STATS SECTION */}
-      <StatsSection />
-
-      {/* WHY CHOOSE US */}
-      <section className="py-20 bg-gray-100">
-
-        <div className="max-w-6xl mx-auto px-6">
-
-          {/* TITLE */}
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#b12526] text-center">
-            Why Choose The Dstrict Sports Arena
-          </h2>
-
-          <p className="text-gray-600 text-center mt-3">
-            Built for players, teams, and communities who want the best football experience
+          <p className="text-sm tracking-[0.1em] uppercase text-[#000f22]/60">
+            Nexus Brands Mw
           </p>
 
-          {/* CARDS */}
-          <div className="mt-10 grid md:grid-cols-3 gap-6">
+          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight text-[#000f22]">
+            We help businesses{" "}
+            <span className="text-[#e01e41]">
+              stand out, grow & dominate
+            </span>
+          </h1>
 
-            {/* CARD 1 */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
-              <ShieldCheck
-                size={30}
-                className="text-[#4ebd45] mb-2"
-              />
+          <p className="mt-6 text-lg text-[#000f22]/70 leading-relaxed">
+            We build strong brand presence and digital experiences that position
+            businesses clearly, professionally, and competitively in their market.
+          </p>
 
-              <h3 className="text-xl font-bold text-[#020f22]">
-                Great Service & No Blackouts
-              </h3>
+          {/* CTA */}
+          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
 
-              <p className="text-gray-600 mt-2">
-                Reliable pitch availability, smooth booking system, and uninterrupted football experience.
-              </p>
-            </div>
+            <Link
+              href="/contact"
+              className="bg-[#e01e41] text-white px-7 py-3 rounded-full font-medium hover:opacity-90 transition"
+            >
+              Start a Project
+            </Link>
 
-            {/* CARD 2 */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
-              <Trophy
-                size={30}
-                className="text-[#4ebd45] mb-4"
-              />
-
-              <h3 className="text-xl font-bold text-[#020f22]">
-                Premium Pitch Quality
-              </h3>
-
-              <p className="text-gray-600 mt-2">
-                Well-maintained playing surface designed for competitive and recreational football.
-              </p>
-            </div>
-
-            {/* CARD 3 */}
-            <div className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
-              <Clock3
-                size={30}
-                className="text-[#4ebd45] mb-4"
-              />
-
-              <h3 className="text-xl font-bold text-[#020f22]">
-                Flexible Time Slots
-              </h3>
-
-              <p className="text-gray-600 mt-2">
-                Hourly booking slots available throughout the day for teams and groups.
-              </p>
-            </div>
+            <Link
+              href="/our-work"
+              className="group border border-[#000f22]/20 text-[#000f22] px-7 py-3 rounded-full hover:border-[#e01e41] hover:text-[#e01e41] transition flex items-center gap-2 justify-center"
+            >
+              View Our Work
+              <FaArrowRight className="transition-transform group-hover:translate-x-1" />
+            </Link>
 
           </div>
 
@@ -154,164 +62,319 @@ export default function HomePage() {
 
       </section>
 
-      {/* OUR FACILITIES */}
-      <section className="py-20 bg-[#4ebd45]">
+      {/* TRUSTED BY SECTION */}
+      <section className="py-14 bg-white overflow-hidden">
+
+        {/* PARAGRAPH WITH LINES */}
+        <div className="max-w-6xl mx-auto px-6 mb-10">
+          <div className="flex items-center justify-center gap-6">
+
+            {/* LEFT LINE */}
+            <div className="w-20 h-px bg-[#000f22]/10"></div>
+
+            {/* TEXT */}
+            <p className="text-sm text-[#000f22]/60 text-center whitespace-nowrap">
+              Brands that trusted us.
+            </p>
+
+            {/* RIGHT LINE */}
+            <div className="w-20 h-px bg-[#000f22]/10"></div>
+
+          </div>
+        </div>
+
+        {/* LOGO SCROLLER */}
+        <div className="max-w-6xl mx-auto px-6 relative overflow-hidden">
+
+          {/* LEFT FADE */}
+          <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
+
+          {/* RIGHT FADE */}
+          <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+          {/* TRACK */}
+          <div className="flex w-max animate-marquee gap-32 items-center py-2">
+
+            {/* LOGOS */}
+            <img src="/logos/1.png" alt="Logo 1" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
+            <img src="/logos/2.png" alt="Logo 2" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
+            <img src="/logos/3.png" alt="Logo 3" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
+            <img src="/logos/4.png" alt="Logo 4" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
+            <img src="/logos/5.png" alt="Logo 5" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
+            <img src="/logos/6.png" alt="Logo 6" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
+
+            {/* DUPLICATES FOR INFINITE LOOP */}
+            <img src="/logos/1.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
+            <img src="/logos/2.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
+            <img src="/logos/3.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
+            <img src="/logos/4.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
+            <img src="/logos/5.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
+            <img src="/logos/6.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* ABOUT INTRO */}
+      <section className="bg-white py-14">
 
         <div className="max-w-6xl mx-auto px-6">
 
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+
+            {/* LEFT */}
+            <div>
+
+              {/* WHO WE ARE */}
+              <div className="flex items-center justify-center md:justify-start gap-4 mb-6">
+                <span className="uppercase tracking-[0.2em] text-sm text-[#e01e41] font-medium">
+                  Who We Are
+                </span>
+
+                <div className="w-40 h-px bg-[#e01e41]/35"></div>
+              </div>
+
+              <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight text-[#000f22]">
+                We are a Malawian creative agency built for ambitious businesses.
+              </h2>
+
+            </div>
+
+            {/* RIGHT */}
+            <div>
+
+              <p className="text-lg leading-relaxed text-[#000f22]/70">
+                Nexus Brands is a creative and digital agency that help businesses
+                of all sizes build credibility, communicate effectively, and position
+                themselves for sustainable growth.
+              </p>
+
+              <p className="mt-8 text-lg leading-relaxed text-[#000f22]/70">
+                From individuals, startups and growing SMEs to established companies and organizations, 
+                we believe every business deserves a creates meaningful connections with customers.
+              </p>
+
+            </div>
+
+          </div>
+        </div>
+
+          {/* MOVING VALUES */}
+          <div className="mt-16 border-t border-[#000f22]/10 pt-8 overflow-hidden">
+
+            <div className="relative">
+
+              {/* Left fade */}
+              <div className="absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-white to-transparent z-10" />
+
+              {/* Right fade */}
+              <div className="absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-white to-transparent z-10" />
+
+              <div className="flex w-max animate-values gap-10 text-sm uppercase tracking-[0.15em] text-[#000f22]/50">
+
+                <span>Creative Thinking</span>
+                <span>•</span>
+
+                <span>Strategic Approach</span>
+                <span>•</span>
+
+                <span>Long-Term Partnerships</span>
+                <span>•</span>
+
+                <span>Growth Focused</span>
+                <span>•</span>
+
+                <span>Creative Thinking</span>
+                <span>•</span>
+
+                <span>Strategic Approach</span>
+                <span>•</span>
+
+                <span>Long-Term Partnerships</span>
+                <span>•</span>
+
+                <span>Growth Focused</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+      </section>
+
+      {/* SERVICES */}
+      <section className="py-20 bg-secondary">
+        <div className="max-w-6xl mx-auto px-6">
+
+          {/* SECTION HEADER */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white">
-              Our Facilities
+            <span className="uppercase tracking-[0.2em] text-sm text-[#e01e41] font-medium">
+              Our Services
+            </span>
+
+            <h2 className="mt-4 text-3xl md:text-5xl font-bold text-white">
+              What We Do Best
             </h2>
 
-            <p className="text-white mt-3">
-              Everything you need for a great football experience.
+            <p className="mt-4 text-white/70 max-w-2xl mx-auto">
+              We deliver creative and digital solutions that help businesses build a strong presence,
+              communicate effectively, and grow with confidence.
             </p>
           </div>
 
+          {/* SERVICES GRID */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            <div className="bg-white rounded-xl p-6 text-center shadow-md">
-              <Goal
-                size={30}
-                className="text-[#b12526] mx-auto mb-4"
-              />
-              <h3 className="font-bold text-[#020f22] text-xl">
-                Football Pitch
-              </h3>
-              <p className="text-gray-600 mt-2">
-                Quality playing surface for competitive and recreational matches.
+            {/* GRAPHIC DESIGNING */}
+          <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
+            <Palette className="text-[#e01e41] mb-4" size={28} />
+
+            <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
+              Graphic Designing
+            </h3>
+
+            <p className="mt-3 text-sm text-white/70 leading-relaxed">
+              Creative visual designs including posters, flyers, banners, and marketing materials that
+              communicate your message clearly and attract attention.
+            </p>
+          </div>
+
+            {/* BRANDING */}
+          <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
+            <PenTool className="text-[#e01e41] mb-4" size={28} />
+
+            <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
+              Branding
+            </h3>
+
+            <p className="mt-3 text-sm text-white/70 leading-relaxed">
+              We build strong brand identities that define how your business looks, feels, and is
+              remembered across all platforms.
+            </p>
+          </div>
+
+            {/* SOCIAL MEDIA MARKETING */}
+          <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
+            <Megaphone className="text-[#e01e41] mb-4" size={28} />
+
+            <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
+              Social Media Marketing
+            </h3>
+
+            <p className="mt-3 text-sm text-white/70 leading-relaxed">
+              Strategic content creation and campaign management to help you grow visibility,
+              engagement, and customer reach online.
+            </p>
+          </div>
+
+            {/* WEBSITE DEVELOPMENT */}
+          <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
+            <Globe className="text-[#e01e41] mb-4" size={28} />
+
+            <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
+              Website Development
+            </h3>
+
+            <p className="mt-3 text-sm text-white/70 leading-relaxed">
+              Modern, responsive websites designed to represent your brand professionally and
+              convert visitors into customers.
+            </p>
+          </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      
+      <section className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+
+            {/* LEFT SIDE */}
+            <div>
+              <span className="uppercase tracking-[0.2em] text-sm text-[#e01e41] font-medium">
+                  Why Choose Us
+                </span>
+
+              <h2 className="mt-4 text-3xl md:text-5xl font-bold text-[#000f22] leading-tight">
+                Built for businesses that want real growth
+              </h2>
+
+              <p className="mt-4 text-[#000f22]/70 leading-relaxed">
+                Whether you are an individual, a business starting out or scaling up, we position your business
+                to communicate better, look professional, and compete confidently.
               </p>
             </div>
 
-            <div className="bg-white rounded-xl p-6 text-center shadow-md">
-              <Lightbulb
-                size={30}
-                className="text-[#b12526] mx-auto mb-4"
-              />
-              <h3 className="font-bold text-[#020f22] text-xl">
-                Floodlights
-              </h3>
-              <p className="text-gray-600 mt-2">
-                Evening games supported by reliable lighting.
-              </p>
-            </div>
+            {/* RIGHT SIDE */}
+            <div className="space-y-6">
 
-            <div className="bg-white rounded-xl p-6 text-center shadow-md">
-              <Car
-                size={30}
-                className="text-[#b12526] mx-auto mb-4"
-              />
-              <h3 className="font-bold text-[#020f22] text-xl">
-                Parking Space
-              </h3>
-              <p className="text-gray-600 mt-2">
-                Convenient parking for players and visitors.
-              </p>
-            </div>
+              <div className="flex gap-4 items-start">
+                <BadgeCheck className="text-[#e01e41] mt-1" size={24} />
+                <div>
+                  <h3 className="font-bold text-[#000f22]">Registered Business</h3>
+                  <p className="text-sm text-[#000f22]/60">
+                    We are a legally registered by the Government of Malawi.
+                  </p>
+                </div>
+              </div>
 
-            <div className="bg-white rounded-xl p-6 text-center shadow-md">
-              <CalendarDays
-                size={30}
-                className="text-[#b12526] mx-auto mb-4"
-              />
-              <h3 className="font-bold text-[#020f22] text-xl">
-                Events & Tournaments
-              </h3>
-              <p className="text-gray-600 mt-2">
-                Ideal venue for tournaments, leagues, and football events.
-              </p>
+              <div className="flex gap-4 items-start">
+                <Medal className="text-[#e01e41] mt-1" size={24} />
+                <div>
+                  <h3 className="font-bold text-[#000f22]">Experienced</h3>
+                  <p className="text-sm text-[#000f22]/60">
+                    A skilled team combining creativity, strategy, and technical expertise.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 items-start">
+                <Clock className="text-[#e01e41] mt-1" size={24} />
+                <div>
+                  <h3 className="font-bold text-[#000f22]">Reliable Delivery</h3>
+                  <p className="text-sm text-[#000f22]/60">
+                    We value deadlines and consistency, ensuring every project is delivered on time and with quality.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex gap-4 items-start">
+                <Users className="text-[#e01e41] mt-1" size={24} />
+                <div>
+                  <h3 className="font-bold text-[#000f22]">Client-Centered</h3>
+                  <p className="text-sm text-[#000f22]/60">
+                    We work closely with you to understand your goals.
+                  </p>
+                </div>
+              </div>
+
             </div>
 
           </div>
 
         </div>
-
       </section>
 
+      {/* PROJECTS */}
+      <OurWork />
 
-      {/* IMAGE SLIDER STRIP */}
-      <section className="w-full bg-white py-10">
+      {/* TESTIMONIALS */}
+      <Testimonials />
 
-        {/* HEADER (like Why Choose Us style) */}
-        <div className="max-w-6xl mx-auto px-6 text-center mb-6">
+      {/* CTA */}
+      <CTASection />
 
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#020f22]">
-            Moments From The Pitch
-          </h2>
-
-          <p className="text-gray-600 mt-3">
-            Real games, training sessions, and community football at The Dstrict Sports Arena
-          </p>
-
-        </div>
-
-        {/* SLIDER */}
-        <div className="overflow-hidden">
-
-          <div className="flex w-max animate-scroll gap-3">
-
-            <img src="/gallery/1.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/2.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/3.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/4.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/5.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/6.jpg" className="h-64 w-80 object-cover rounded-lg" />
-
-            <img src="/gallery/1.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/2.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/3.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/4.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/5.jpg" className="h-64 w-80 object-cover rounded-lg" />
-            <img src="/gallery/6.jpg" className="h-64 w-80 object-cover rounded-lg" />
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* CTA SECTION */}
-      <section className="bg-[#b12526] py-20">
-
-        <div className="max-w-4xl mx-auto px-6 text-center">
-
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white">
-            Ready to Book Your Next Match?
-          </h2>
-
-          <p className="text-white/80 mt-4 text-lg">
-            Secure your preferred time slot today and enjoy a premium football experience at The Dstrict Sports Arena.
-          </p>
-
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-
-            <a
-              href="/booking"
-              className="bg-[#4ebd45] hover:opacity-90 transition text-white font-bold px-8 py-4 rounded-lg"
-            >
-              Book a Session
-            </a>
-
-            <a
-              href="/booking"
-              className="border-2 border-white text-white hover:bg-white hover:text-[#020f22] transition font-bold px-8 py-4 rounded-lg"
-            >
-              View Available Slots
-            </a>
-
-          </div>
-
-        </div>
-
-      </section>
-
-      {/* Google Maps */}
-      <section>
-        <GoogleMap />
-      </section>
-
-    </main>
+      {/* BOTTOM WHITE LINE */}
+      <div className="mt-16 h-px w-full bg-accent/20" />
+      
+    </>
+    
   );
 }

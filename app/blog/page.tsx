@@ -1,53 +1,137 @@
-import PageHeader from "@/components/PageHeader";
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import { getPosts } from "@/lib/posts";
 
 export default function BlogPage() {
-  const posts = getPosts();
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = ["All", "Branding", "Design", "Marketing", "Web"];
+
+  const posts = [
+    {
+      title: "How strong branding builds trust",
+      category: "Branding",
+      image: "/blog/1.jpg",
+      slug: "branding-builds-trust",
+      excerpt:
+        "Discover how consistent branding influences customer perception and long-term business growth.",
+    },
+    {
+      title: "Design principles every business should know",
+      category: "Design",
+      image: "/blog/2.jpg",
+      slug: "design-principles",
+      excerpt:
+        "Simple design rules that make your brand look professional and credible.",
+    },
+    {
+      title: "Why most small businesses fail online",
+      category: "Marketing",
+      image: "/blog/3.jpg",
+      slug: "business-failure-online",
+      excerpt:
+        "Common mistakes businesses make when trying to grow digitally.",
+    },
+    {
+      title: "Building a modern website in 2026",
+      category: "Web",
+      image: "/blog/4.jpg",
+      slug: "modern-website-2026",
+      excerpt:
+        "What makes a modern, fast, and conversion-driven website today.",
+    },
+  ];
+
+  const filtered =
+    activeCategory === "All"
+      ? posts
+      : posts.filter((post) => post.category === activeCategory);
 
   return (
     <>
-      <PageHeader
-        title="News & Updates"
-        subtitle="Stay updated with match highlights, upcoming fixtures, tournaments, and everything happening at The Dstrict Sports Arena."
-        backgroundImage="/images/blog-bg.jpg"
-      />
+      {/* HERO */}
+      <section className="py-20 bg-[#f8f9fb] relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#e01e41]/10 blur-[120px] rounded-full" />
+          <div className="absolute bottom-[-200px] left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#000f22]/10 blur-[120px] rounded-full" />
+        </div>
 
-      <div className="bg-gray-100 py-12">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-6">
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <span className="uppercase tracking-[0.2em] text-sm text-[#000f22]/60">
+            Insights & Articles
+          </span>
 
-          {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="bg-white border border-gray-300 rounded-2xl overflow-hidden hover:scale-[1.02] transition"
+          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-[#000f22]">
+            Our Blog
+          </h1>
+
+          <p className="mt-6 text-lg text-[#000f22]/70 leading-relaxed">
+            Thoughts, insights, and strategies on branding, design, marketing, and digital growth.
+          </p>
+        </div>
+      </section>
+
+      {/* FILTERS */}
+      <section className="py-10 bg-white">
+        <div className="max-w-6xl mx-auto px-6 flex flex-wrap gap-3">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition ${
+                activeCategory === cat
+                  ? "bg-[#e01e41] text-white"
+                  : "border border-[#000f22]/10 text-[#000f22] hover:border-[#e01e41] hover:text-[#e01e41]"
+              }`}
             >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
 
-              <div className="relative w-full h-48">
-                <Image
+      {/* BLOG GRID */}
+      <section className="pb-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {filtered.map((post, i) => (
+            <Link
+              key={i}
+              href={`/blog/${post.slug}`}
+              className="group bg-white border border-[#000f22]/10 rounded-3xl overflow-hidden hover:shadow-lg transition"
+            >
+              <div className="overflow-hidden">
+                <img
                   src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover"
+                  className="h-[220px] w-full object-cover group-hover:scale-105 transition duration-500"
                 />
               </div>
 
-              <div className="p-5">
-                <h3 className="text-xl font-bold text-[#020f22]">
+              <div className="p-6">
+
+                <span className="text-xs uppercase tracking-[0.15em] text-[#e01e41]">
+                  {post.category}
+                </span>
+
+                <h3 className="mt-3 text-xl font-bold text-[#000f22] leading-snug">
                   {post.title}
                 </h3>
 
-                <p className="text-gray-600 mt-2">
-                  {post.description}
+                <p className="mt-3 text-sm text-[#000f22]/60 leading-relaxed">
+                  {post.excerpt}
                 </p>
-              </div>
 
+                <p className="mt-5 text-sm font-medium text-[#e01e41] group-hover:translate-x-1 transition">
+                  Read More →
+                </p>
+
+              </div>
             </Link>
           ))}
 
         </div>
-      </div>
+      </section>
     </>
   );
 }
