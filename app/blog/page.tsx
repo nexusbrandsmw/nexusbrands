@@ -1,13 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import { projects } from "@/data/projects";
 
 export default function BlogPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const categories = ["All", "Branding", "Design", "Marketing", "Web"];
-
   const posts = [
     {
       title: "How strong branding builds trust",
@@ -43,11 +39,6 @@ export default function BlogPage() {
     },
   ];
 
-  const filtered =
-    activeCategory === "All"
-      ? posts
-      : posts.filter((post) => post.category === activeCategory);
-
   return (
     <>
       {/* HERO */}
@@ -72,30 +63,11 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* FILTERS */}
-      <section className="py-10 bg-white">
-        <div className="max-w-6xl mx-auto px-6 flex flex-wrap gap-3">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition ${
-                activeCategory === cat
-                  ? "bg-[#e01e41] text-white"
-                  : "border border-[#000f22]/10 text-[#000f22] hover:border-[#e01e41] hover:text-[#e01e41]"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </section>
-
       {/* BLOG GRID */}
-      <section className="pb-24 bg-white">
+      <section className="pt-14 pb-24 bg-white">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {filtered.map((post, i) => (
+          {posts.map((post, i) => (
             <Link
               key={i}
               href={`/blog/${post.slug}`}

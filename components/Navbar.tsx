@@ -7,7 +7,7 @@ import {
   FaEnvelope,
   FaBars,
   FaTimes,
-  FaChevronDown,
+  FaWhatsapp,
 } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +17,14 @@ export default function Navbar() {
   const pathname = usePathname();
 
   const isActive = (path: string) => pathname === path;
+
+  const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/our-work", label: "Our Work" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" },
+  ];
 
   return (
     <header className="w-full sticky top-0 z-50">
@@ -39,7 +47,7 @@ export default function Navbar() {
       </div>
 
       {/* MAIN NAV */}
-      <nav className="backdrop-blur-md bg-accent border-b border-black/5">
+      <nav className="backdrop-blur-md bg-white border-b border-black/5">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
           {/* LOGO */}
@@ -55,107 +63,33 @@ export default function Navbar() {
 
           {/* DESKTOP NAV */}
           <ul className="hidden md:flex items-center gap-10 text-sm font-medium text-[#000f22]">
-
-            {/* HOME */}
-            <li>
-              <Link
-                href="/"
-                className={`relative pb-1 transition ${
-                  isActive("/")
-                    ? "text-[#e01e41]"
-                    : "hover:text-[#e01e41]"
-                }`}
-              >
-                Home
-                {isActive("/") && (
-                  <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-[#e01e41] rounded-full" />
-                )}
-              </Link>
-            </li>
-
-            {/* ABOUT DROPDOWN (FIXED) */}
-            <li className="relative group">
-
-              {/* TRIGGER */}
-              <div className="flex items-center gap-1 cursor-pointer pb-1 hover:text-[#e01e41] transition">
-                About
-                <FaChevronDown className="text-xs group-hover:rotate-180 transition" />
-              </div>
-
-              {/* IMPORTANT: hover buffer FIX */}
-              <div className="absolute left-0 top-full pt-2 hidden group-hover:block z-50">
-
-                <div className="bg-white shadow-lg border border-black/5 rounded-xl min-w-[200px] overflow-hidden">
-
-                  <Link
-                    href="/about"
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    Company
-                  </Link>
-
-                  <Link
-                    href="/services"
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    Services
-                  </Link>
-
-                  <Link
-                    href="/blog"
-                    className="block px-4 py-2 hover:bg-gray-50"
-                  >
-                    Blog
-                  </Link>
-
-                </div>
-
-              </div>
-            </li>
-
-            {/* OUR WORK */}
-            <li>
-              <Link
-                href="/our-work"
-                className={`relative pb-1 transition ${
-                  isActive("/our-work")
-                    ? "text-[#e01e41]"
-                    : "hover:text-[#e01e41]"
-                }`}
-              >
-                Our Work
-                {isActive("/our-work") && (
-                  <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-[#e01e41] rounded-full" />
-                )}
-              </Link>
-            </li>
-
-            {/* CONTACT */}
-            <li>
-              <Link
-                href="/contact"
-                className={`relative pb-1 transition ${
-                  isActive("/contact")
-                    ? "text-[#e01e41]"
-                    : "hover:text-[#e01e41]"
-                }`}
-              >
-                Contact
-                {isActive("/contact") && (
-                  <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-[#e01e41] rounded-full" />
-                )}
-              </Link>
-            </li>
-
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`relative pb-1 transition ${
+                    isActive(link.href)
+                      ? "text-[#e01e41]"
+                      : "hover:text-[#e01e41]"
+                  }`}
+                >
+                  {link.label}
+                  {isActive(link.href) && (
+                    <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-[#e01e41] rounded-full" />
+                  )}
+                </Link>
+              </li>
+            ))}
           </ul>
 
           {/* CTA */}
           <Link
-            href="/booking"
-            className="hidden md:block bg-[#e01e41] text-white px-5 py-2 rounded-full text-sm hover:opacity-90 transition"
+            href="https://wa.me/265994150446?text=Hi%2C%20I%27m%20reaching%20out%20from%20the%20Nexus%20Brands%20website%20and%20would%20like%20to%20discuss%20a%20project."
+            target="_blank"
+            className="hidden md:flex items-center gap-2 bg-[#e01e41] text-white px-5 py-2 rounded-full text-sm hover:opacity-90 transition"
           >
-Let&apos;s Collaborate
-            <span className="transition-transform group-hover:translate-x-1"> → </span>
+            <FaWhatsapp />
+            Let&apos;s Collaborate
           </Link>
 
           {/* MOBILE MENU BUTTON */}
@@ -174,49 +108,23 @@ Let&apos;s Collaborate
 
             <ul className="flex flex-col p-4 gap-4 text-[#000f22]">
 
-              <li>
-                <Link href="/" onClick={() => setOpen(false)}>
-                  Home
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/about" onClick={() => setOpen(false)}>
-                  Company
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/services" onClick={() => setOpen(false)}>
-                  Services
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/blog" onClick={() => setOpen(false)}>
-                  Blog
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/our-work" onClick={() => setOpen(false)}>
-                  Our Work
-                </Link>
-              </li>
-
-              <li>
-                <Link href="/contact" onClick={() => setOpen(false)}>
-                  Contact
-                </Link>
-              </li>
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} onClick={() => setOpen(false)}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
 
               <li>
                 <Link
-                  href="/booking"
+                  href="https://wa.me/265994150446?text=Hi%2C%20I%27m%20reaching%20out%20from%20the%20Nexus%20Brands%20website%20and%20would%20like%20to%20discuss%20a%20project."
+                  target="_blank"
                   onClick={() => setOpen(false)}
-                  className="bg-[#e01e41] text-white px-4 py-2 rounded-lg inline-block"
+                  className="flex items-center gap-2 bg-[#e01e41] text-white px-4 py-2 rounded-lg w-fit"
                 >
-                  Book Now
+                  <FaWhatsapp />
+                  Let&apos;s Collaborate
                 </Link>
               </li>
 

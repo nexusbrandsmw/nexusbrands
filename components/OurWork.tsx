@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { projects } from "@/data/projects";
 
 export default function OurWork() {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -9,23 +11,16 @@ export default function OurWork() {
     "All",
     "Graphic Design",
     "Branding",
-    "Social Media",
-    "Website",
-  ];
-
-  const projects = [
-    { title: "Tiata Investment", category: "Branding", image: "/work/1.jpg" },
-    { title: "Availon", category: "Graphic Design", image: "/work/2.jpg" },
-    { title: "Amuhala Studios", category: "Social Media", image: "/work/3.jpg" },
-    { title: "Kaka Investment", category: "Website", image: "/work/4.jpg" },
-    { title: "Nexus Brands", category: "Branding", image: "/work/5.jpg" },
-    { title: "Maid Recruitment Platform", category: "Website", image: "/work/6.jpg" },
+    "Social Media Marketing",
+    "Website Development",
   ];
 
   const filteredProjects =
     activeFilter === "All"
       ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      : projects.filter((project) =>
+          project.services.includes(activeFilter)
+        );
 
   return (
     <section className="py-24 bg-accent">
@@ -49,36 +44,67 @@ export default function OurWork() {
         </div>
 
         {/* PROJECT GRID */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          {filteredProjects.map((project, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-3xl"
+          {filteredProjects.map((project) => (
+            <Link
+              key={project.slug}
+              href={`/our-work/${project.slug}`}
+              className="group relative block aspect-square overflow-hidden rounded-3xl"
             >
+              {/* PROJECT IMAGE */}
               <img
-                src={project.image}
+                src={project.images[0]?.url || "/images/placeholder.jpg"}
                 alt={project.title}
-                className="w-full h-[260px] object-cover transition duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
-              {/* OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#000f22]/90 via-[#000f22]/20 to-transparent" />
+              {/* HOVER OVERLAY */}
+              <div
+                className="
+                  absolute inset-0
+                  bg-secondary/85
+                  opacity-0
+                  group-hover:opacity-100
+                  transition-opacity
+                  duration-300
+                  flex items-center justify-center
+                  p-8
+                  text-center
+                "
+              >
+                <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
 
-              {/* TEXT */}
-              <div className="absolute bottom-5 left-5">
-                <span className="text-xs text-white/70">
-                  {project.category}
-                </span>
+                  {/* SERVICE */}
+                  <p className="text-xs flex-wrap rounded-full font-medium bg-white/10 text-white border">
+                    {project.services[0]}
+                  </p>
 
-                <h3 className="text-xl font-bold text-white">
-                  {project.title}
-                </h3>
+                  {/* TITLE */}
+                  <h3 className="mt-3 text-2xl font-bold text-primary">
+                    {project.title}
+                  </h3>
+
+                  {/* LINK */}
+                  <span className="inline-block mt-6 text-sm font-semibold text-white border-b border-white/60 pb-1">
+                    View Project →
+                  </span>
+
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
 
         </div>
+
+        {/* EMPTY STATE */}
+        {filteredProjects.length === 0 && (
+          <div className="py-16 text-center">
+            <p className="text-[#000f22]/60">
+              No projects found in this category.
+            </p>
+          </div>
+        )}
 
       </div>
     </section>
