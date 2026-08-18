@@ -6,6 +6,7 @@ import {Palette, PenTool, Megaphone, Globe, BadgeCheck, ShieldCheck, Medal, User
 import OurWork from "@/components/OurWork";
 import Testimonials from "@/components/Testimonials";
 import CTASection from "@/components/CTA";
+import TrustedBy from "@/components/TrustedBy";
 
 export default function Hero() {
   return (
@@ -62,61 +63,7 @@ export default function Hero() {
 
       </section>
 
-      {/* TRUSTED BY SECTION */}
-      <section className="py-14 bg-white overflow-hidden">
-
-        {/* PARAGRAPH WITH LINES */}
-        <div className="max-w-6xl mx-auto px-6 mb-10">
-          <div className="flex items-center justify-center gap-6">
-
-            {/* LEFT LINE */}
-            <div className="w-20 h-px bg-[#000f22]/10"></div>
-
-            {/* TEXT */}
-            <p className="text-sm text-[#000f22]/60 text-center whitespace-nowrap">
-              Brands that trusted us.
-            </p>
-
-            {/* RIGHT LINE */}
-            <div className="w-20 h-px bg-[#000f22]/10"></div>
-
-          </div>
-        </div>
-
-        {/* LOGO SCROLLER */}
-        <div className="max-w-6xl mx-auto px-6 relative overflow-hidden">
-
-          {/* LEFT FADE */}
-          <div className="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10"></div>
-
-          {/* RIGHT FADE */}
-          <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10"></div>
-
-          {/* TRACK */}
-          <div className="flex w-max animate-marquee gap-32 items-center py-2">
-
-            {/* LOGOS */}
-            <img src="/logos/1.png" alt="Logo 1" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
-            <img src="/logos/2.png" alt="Logo 2" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
-            <img src="/logos/3.png" alt="Logo 3" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
-            <img src="/logos/4.png" alt="Logo 4" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
-            <img src="/logos/5.png" alt="Logo 5" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
-            <img src="/logos/6.png" alt="Logo 6" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition" />
-
-            {/* DUPLICATES FOR INFINITE LOOP */}
-            <img src="/logos/1.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
-            <img src="/logos/2.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
-            <img src="/logos/3.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
-            <img src="/logos/4.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
-            <img src="/logos/5.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
-            <img src="/logos/6.png" alt="" className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition " />
-
-          </div>
-
-        </div>
-
-      </section>
-
+      <TrustedBy />
 
       {/* ABOUT INTRO */}
       <section className="bg-white py-14">

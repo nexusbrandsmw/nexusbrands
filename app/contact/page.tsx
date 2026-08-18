@@ -23,12 +23,26 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* HEADER */}
-      <PageHeader
-        label="Contact"
-        title="Let’s build something great together"
-        subtitle="Tell us about your project and we’ll respond as soon as possible."
-      />
+      {/* HERO */}
+      <section className="pt-28 pb-20 bg-[#000f22] relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#e01e41]/20 blur-[140px] rounded-full" />
+        </div>
+
+        <div className="relative max-w-4xl mx-auto px-6 text-center">
+          <span className="uppercase tracking-[0.2em] text-sm text-primary/90">
+            Contact
+          </span>
+
+          <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-accent">
+            Let’s build something great together<span className="text-primary">.</span>
+          </h1>
+
+          <p className="mt-6 text-lg text-white/70 leading-relaxed">
+            Tell us about your project and we’ll respond as soon as possible.
+          </p>
+        </div>
+      </section>
 
       {/* CONTACT SECTION */}
       <section className="py-24 bg-accent">

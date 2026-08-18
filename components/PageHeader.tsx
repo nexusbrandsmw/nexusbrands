@@ -15,7 +15,7 @@ export default function PageHeader({
 }: PageHeaderProps) {
   return (
     <section
-      className="relative py-24 bg-white overflow-hidden"
+      className="relative py-24 bg-secondary overflow-hidden"
       style={
         backgroundImage
           ? {
