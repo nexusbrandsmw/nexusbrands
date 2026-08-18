@@ -38,7 +38,7 @@ export default function OurWorkPage() {
           </span>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-[#000f22]">
-            Our Work
+            Our Work<span className="text-primary">.</span>
           </h1>
 
           <p className="mt-6 text-lg text-[#000f22]/70 leading-relaxed">
@@ -128,13 +128,6 @@ export default function OurWorkPage() {
                       <h3 className="mt-3 text-xl font-bold text-[#000f22] leading-snug">
                         {project.title}
                       </h3>
-
-                      {/* TAGLINE */}
-                      {project.tagline && (
-                        <p className="mt-2 text-sm text-[#000f22]/60 line-clamp-2">
-                          {project.tagline}
-                        </p>
-                      )}
 
                       {/* VIEW PROJECT */}
                       <p className="mt-5 text-sm font-medium text-[#e01e41] group-hover:translate-x-1 transition">

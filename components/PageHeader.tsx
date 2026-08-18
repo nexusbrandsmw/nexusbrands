@@ -39,7 +39,7 @@ export default function PageHeader({
         )}
 
         <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-[#000f22] leading-tight">
-          {title}
+          {title}<span className="text-primary">.</span>
         </h1>
 
         {subtitle && (

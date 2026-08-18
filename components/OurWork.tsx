@@ -25,6 +25,13 @@ export default function OurWork() {
   return (
     <section className="py-24 bg-accent">
       <div className="max-w-6xl mx-auto px-6">
+        <span className="uppercase tracking-[0.2em] text-sm text-[#e01e41]">
+          Portfolio
+        </span>
+
+        <h2 className="mt-4 mb-10 text-3xl md:text-5xl font-bold text-[#000f22] leading-tight">
+          The work we are proud for<span className="text-primary">.</span>
+        </h2>
 
         {/* FILTERS */}
         <div className="flex flex-wrap gap-3 mb-12">
@@ -76,7 +83,7 @@ export default function OurWork() {
                 <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
 
                   {/* SERVICE */}
-                  <p className="text-xs flex-wrap rounded-full font-medium bg-white/10 text-white border">
+                  <p className="text-xs rounded-full font-medium bg-white/10 text-white px-3 pt-1 pb-1 inline-block">
                     {project.services[0]}
                   </p>
 

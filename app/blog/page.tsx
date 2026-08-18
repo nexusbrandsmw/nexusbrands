@@ -54,7 +54,7 @@ export default function BlogPage() {
           </span>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-[#000f22]">
-            Our Blog
+            Our Blog<span className="text-primary">.</span>
           </h1>
 
           <p className="mt-6 text-lg text-[#000f22]/70 leading-relaxed">

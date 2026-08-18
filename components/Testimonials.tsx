@@ -25,7 +25,7 @@ export default function Testimonials() {
           </span>
 
           <h2 className="mt-4 text-3xl md:text-5xl font-bold text-[#000f22] leading-tight">
-            What our clients say
+            What our clients say<span className="text-primary">.</span>
           </h2>
 
           <p className="mt-6 text-[#000f22]/70 leading-relaxed">

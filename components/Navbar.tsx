@@ -121,7 +121,7 @@ export default function Navbar() {
                   href="https://wa.me/265994150446?text=Hi%2C%20I%27m%20reaching%20out%20from%20the%20Nexus%20Brands%20website%20and%20would%20like%20to%20discuss%20a%20project."
                   target="_blank"
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 bg-[#e01e41] text-white px-4 py-2 rounded-lg w-fit"
+                  className="flex items-center gap-2 bg-[#e01e41] text-white px-4 py-2 rounded-full w-fit"
                 >
                   <FaWhatsapp />
                   Let&apos;s Collaborate

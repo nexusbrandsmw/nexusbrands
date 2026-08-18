@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
-import {Palette, PenTool, Megaphone, Globe, BadgeCheck, ShieldCheck, Medal, Users, Clock, } from "lucide-react";
+import {Palette, PenTool, Megaphone, Globe, BadgeCheck, ShieldCheck, Medal, Users, Clock, Printer, Package } from "lucide-react";
 import OurWork from "@/components/OurWork";
 import Testimonials from "@/components/Testimonials";
 import CTASection from "@/components/CTA";
@@ -138,7 +138,7 @@ export default function Hero() {
               </div>
 
               <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight text-[#000f22]">
-                We are a Malawian creative agency built for ambitious businesses.
+                We are a Malawian creative agency built for ambitious businesses<span className="text-primary">.</span>
               </h2>
 
             </div>
@@ -217,7 +217,7 @@ export default function Hero() {
             </span>
 
             <h2 className="mt-4 text-3xl md:text-5xl font-bold text-white">
-              What We Do Best
+              What We Do Best<span className="text-primary">.</span>
             </h2>
 
             <p className="mt-4 text-white/70 max-w-2xl mx-auto">
@@ -285,6 +285,34 @@ export default function Hero() {
             </p>
           </div>
 
+            {/* PROMOTIONAL PRINTING */}
+          <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
+            <Printer className="text-[#e01e41] mb-4" size={28} />
+
+            <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
+              Offset Printing
+            </h3>
+
+            <p className="mt-3 text-sm text-white/70 leading-relaxed">
+              Branded promotional materials including banners, flyers, posters, and signage that
+              reinforce your identity wherever they're seen.
+            </p>
+          </div>
+
+            {/* STATIONERY SUPPLY */}
+          <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
+            <Package className="text-[#e01e41] mb-4" size={28} />
+
+            <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
+              Stationery Supply
+            </h3>
+
+            <p className="mt-3 text-sm text-white/70 leading-relaxed">
+              Branded and general office stationery to keep your business professional, consistent,
+              and fully equipped.
+            </p>
+          </div>
+
           </div>
 
         </div>
@@ -303,7 +331,7 @@ export default function Hero() {
                 </span>
 
               <h2 className="mt-4 text-3xl md:text-5xl font-bold text-[#000f22] leading-tight">
-                Built for businesses that want real growth
+                Built for businesses that want real growth<span className="text-primary">.</span>
               </h2>
 
               <p className="mt-4 text-[#000f22]/70 leading-relaxed">
