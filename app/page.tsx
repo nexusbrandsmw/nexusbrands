@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#fef5d2] text-center">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-accent text-center">
 
         {/* BACKGROUND GLOW */}
         <div className="absolute inset-0">
@@ -64,6 +64,9 @@ export default function Hero() {
       </section>
 
       <TrustedBy />
+
+      {/* TOP BLACK LINE */}
+      <div className="border-t border-accent/10 overflow-hidden" />
 
       {/* ABOUT INTRO */}
       <section className="bg-white py-14">

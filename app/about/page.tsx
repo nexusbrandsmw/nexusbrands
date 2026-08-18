@@ -109,7 +109,7 @@ export default function AboutPage() {
           <div>
             <p className="text-3xl md:text-5xl font-extrabold text-[#e01e41]">Serving</p>
             <p className="mt-2 text-sm uppercase tracking-[0.15em] text-[#000f22]/60">
-              Local &amp; International Reach
+              Local &amp; International Clients
             </p>
           </div>
 

@@ -12,8 +12,8 @@ export default function TrustedBy() {
           
           <div className="w-20 h-px bg-[#000f22]/10 shrink-0" />
 
-          <p className="text-sm text-[#000f22]/60 text-center whitespace-nowrap">
-            Brands that trusted us.
+          <p className="text-xl text-secondary/60 uppercase text-center whitespace-nowrap">
+            Brands that trusted us
           </p>
 
           <div className="w-20 h-px bg-[#000f22]/10 shrink-0" />
@@ -41,7 +41,7 @@ export default function TrustedBy() {
                 key={`logo-${index}`}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition"
+                className="h-10 w-auto"
               />
             ))}
 
@@ -58,7 +58,7 @@ export default function TrustedBy() {
                 key={`duplicate-logo-${index}`}
                 src={logo.src}
                 alt=""
-                className="h-8 w-auto grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition"
+                className="h-10 w-auto"
               />
             ))}
 
