@@ -23,6 +23,12 @@ export default async function OurWorkProjectPage({
 
   const galleryImages = project.images ?? [];
 
+  // First 2 images become the reduced-width feature pair shown right
+  // after the hero; everything else renders in the full gallery below
+  // the Challenge/Solution/Outcome cards.
+  const featureImages = galleryImages.slice(0, 2);
+  const restImages = galleryImages.slice(2);
+
   return (
     <>
       {/* HERO */}
@@ -76,6 +82,29 @@ export default async function OurWorkProjectPage({
 
         </div>
       </section>
+
+      {/* FEATURE IMAGES — reduced-width pair, sits between the hero and
+          the Challenge/Solution/Outcome cards */}
+      {featureImages.length > 0 && (
+        <section className="pt-16 pb-4 bg-white">
+          <div className="max-w-4xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {featureImages.map((image, index) => (
+              <div
+                key={`${image.url}-${index}`}
+                className="rounded-2xl overflow-hidden"
+              >
+                <Image
+                  src={image.url}
+                  alt={`${project.title} feature image ${index + 1}`}
+                  width={700}
+                  height={500}
+                  className="w-full h-[280px] object-cover hover:scale-105 transition duration-500"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* CHALLENGE / SOLUTION / OUTCOME */}
       <section className="pt-16 pb-16 bg-white">
@@ -144,18 +173,19 @@ export default async function OurWorkProjectPage({
         </div>
       </section>
 
-      {/* GALLERY */}
-      {galleryImages.length > 0 && (
+      {/* GALLERY — remaining images (excludes the 2 used above as
+          feature images) */}
+      {restImages.length > 0 && (
         <section className="pb-20 bg-white">
           <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {galleryImages.map((image, index) => (
+            {restImages.map((image, index) => (
               <div
                 key={`${image.url}-${index}`}
                 className="rounded-2xl overflow-hidden"
               >
                 <Image
                   src={image.url}
-                  alt={`${project.title} project image ${index + 1}`}
+                  alt={`${project.title} project image ${index + 3}`}
                   width={700}
                   height={500}
                   className="w-full h-[240px] object-cover hover:scale-105 transition duration-500"
@@ -211,13 +241,14 @@ export default async function OurWorkProjectPage({
 
         {/* HEADING */}
         <h2 className="mt-6 text-3xl md:text-5xl font-bold leading-tight">
-          Ready to build a strong brand for your business?
+          Ready to build a brand that performs?
         </h2>
 
         {/* DESCRIPTION */}
         <p className="mt-6 text-white/70 leading-relaxed">
-          Whether you are a startup or an established company, we help you
-          create a strong digital presence that attracts and converts customers.
+          Whether you're a startup or an established company, we help you
+          build a brand — and the materials, campaigns, and platforms behind
+          it — that attracts, convinces, and converts.
         </p>
 
         {/* BUTTONS */}

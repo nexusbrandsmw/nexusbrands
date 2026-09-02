@@ -55,7 +55,7 @@ export default function ContactPage() {
             </h2>
 
             <p className="mt-4 text-[#000f22]/70">
-              We respond quickly and help you choose the right solution for your business.
+              We respond quickly and help you find the right fit for your brand and business goals.
             </p>
 
             <div className="mt-10 space-y-6">

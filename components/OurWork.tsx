@@ -9,10 +9,10 @@ export default function OurWork() {
 
   const filters = [
     "All",
-    "Graphic Design",
-    "Branding",
-    "Social Media Marketing",
-    "Website Development",
+    "Brand Strategy",
+    "Creative & Campaigns",
+    "Branded  Materials",
+    "Digital Presence",
   ];
 
   const filteredProjects =

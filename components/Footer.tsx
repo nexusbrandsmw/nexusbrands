@@ -53,8 +53,8 @@ export default function Footer() {
               Nexus Brands
             </h3>
             <p className="leading-relaxed text-white/80">
-              Building brands forward through branding, graphic design,
-              website development, digital marketing, and business consultancy.
+              A full-service marketing and brand agency. Strategy, creative, branded materials,
+             and digital execution, built to help businesses grow.
             </p>
           </div>
 

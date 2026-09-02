@@ -13,13 +13,13 @@ export default function CTASection() {
 
         {/* HEADING */}
         <h2 className="mt-6 text-3xl md:text-5xl font-bold leading-tight">
-          Ready to build a strong brand for your business?
+          Ready to build a brand that performs?
         </h2>
 
         {/* DESCRIPTION */}
         <p className="mt-6 text-white/70 leading-relaxed">
-          Whether you are a startup or an established company, we help you
-          create a strong digital presence that attracts and converts customers.
+          Whether you're a startup or an established company, we help you build a brand and the 
+          materials, campaigns, and platforms behind it — that attracts, convinces, and converts.
         </p>
 
         {/* BUTTONS */}

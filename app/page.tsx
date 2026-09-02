@@ -28,15 +28,16 @@ export default function Hero() {
           </p>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold leading-tight text-[#000f22]">
-            We help businesses{" "}
+            We build brands that {" "}
             <span className="text-[#e01e41]">
-              stand out, grow & dominate
+              connect, compete & grow
             </span>
           </h1>
 
           <p className="mt-6 text-lg text-[#000f22]/70 leading-relaxed">
-            We build strong brand presence and digital experiences that position
-            businesses clearly, professionally, and competitively in their market.
+            From brand strategy and creative campaigns to
+            branded materials and digital execution, we help businesses
+            build a presence that customers notice and competitors respect.
           </p>
 
           {/* CTA */}
@@ -88,7 +89,7 @@ export default function Hero() {
               </div>
 
               <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight text-[#000f22]">
-                We are a Malawian creative agency built for ambitious businesses<span className="text-primary">.</span>
+                We are a Malawian marketing and brand agency built for ambitious businesses<span className="text-primary">.</span>
               </h2>
 
             </div>
@@ -97,9 +98,10 @@ export default function Hero() {
             <div>
 
               <p className="text-lg leading-relaxed text-[#000f22]/70">
-                Nexus Brands is a creative and digital agency that help businesses
-                of all sizes build credibility, communicate effectively, and position
-                themselves for sustainable growth.
+                Nexus Brands is a full-service marketing and brand
+                agency helping businesses build credibility, communicate with
+                purpose, and grow through strategy, creative, branded
+                materials, and digital execution.
               </p>
 
               <p className="mt-8 text-lg leading-relaxed text-[#000f22]/70">
@@ -167,66 +169,54 @@ export default function Hero() {
             </span>
 
             <h2 className="mt-4 text-3xl md:text-5xl font-bold text-white">
-              What We Do Best<span className="text-primary">.</span>
+              Where Strategy Meets Execution<span className="text-primary">.</span>
             </h2>
 
             <p className="mt-4 text-white/70 max-w-2xl mx-auto">
-              We deliver creative and digital solutions that help businesses build a strong presence,
-              communicate effectively, and grow with confidence.
+              We work across four connected disciplines
+              so every brand touchpoint tells the same story.
             </p>
           </div>
 
           {/* SERVICES GRID */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            {/* GRAPHIC DESIGNING */}
+            {/* BRAND STRATEGY */}
           <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
             <Palette className="text-[#e01e41] mb-4" size={28} />
 
             <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
-              Graphic Designing
+              Brand Strategy & Identity
             </h3>
 
             <p className="mt-3 text-sm text-white/70 leading-relaxed">
-              Creative visual designs including posters, flyers, banners, and marketing materials that
-              communicate your message clearly and attract attention.
+              We build strong brand identities, positioning, visual identity,
+              and brand systems that define how your business looks, feels,
+              and is remembered across every platform.
             </p>
           </div>
 
-            {/* BRANDING */}
+            {/* DESIGN */}
           <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
             <PenTool className="text-[#e01e41] mb-4" size={28} />
 
             <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
-              Branding
+              Creative & Campaign Design
             </h3>
 
             <p className="mt-3 text-sm text-white/70 leading-relaxed">
-              We build strong brand identities that define how your business looks, feels, and is
-              remembered across all platforms.
+              From visual design to social content and campaign management,
+              we create work that communicates clearly, builds engagement,
+              and grows your reach.
             </p>
           </div>
 
-            {/* SOCIAL MEDIA MARKETING */}
+            {/* SUPPLY */}
           <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
-            <Megaphone className="text-[#e01e41] mb-4" size={28} />
+            <Printer className="text-[#e01e41] mb-4" size={28} />
 
             <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
-              Social Media Marketing
-            </h3>
-
-            <p className="mt-3 text-sm text-white/70 leading-relaxed">
-              Strategic content creation and campaign management to help you grow visibility,
-              engagement, and customer reach online.
-            </p>
-          </div>
-
-            {/* WEBSITE DEVELOPMENT */}
-          <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
-            <Globe className="text-[#e01e41] mb-4" size={28} />
-
-            <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
-              Website Development
+              Branded Materials & Supply
             </h3>
 
             <p className="mt-3 text-sm text-white/70 leading-relaxed">
@@ -235,31 +225,17 @@ export default function Hero() {
             </p>
           </div>
 
-            {/* PROMOTIONAL PRINTING */}
+            {/* DIGITAL PRESENCE */}
           <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
-            <Printer className="text-[#e01e41] mb-4" size={28} />
+            <Globe className="text-[#e01e41] mb-4" size={28} />
 
             <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
-              Offset Printing
+              Digital Presence
             </h3>
 
             <p className="mt-3 text-sm text-white/70 leading-relaxed">
-              Branded promotional materials including banners, flyers, posters, and signage that
-              reinforce your identity wherever they're seen.
-            </p>
-          </div>
-
-            {/* STATIONERY SUPPLY */}
-          <div className="p-6 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition group">
-            <Package className="text-[#e01e41] mb-4" size={28} />
-
-            <h3 className="text-xl font-bold text-white group-hover:text-[#e01e41] transition">
-              Stationery Supply
-            </h3>
-
-            <p className="mt-3 text-sm text-white/70 leading-relaxed">
-              Branded and general office stationery to keep your business professional, consistent,
-              and fully equipped.
+              Modern, responsive websites and digital platforms that represent
+              your brand professionally and convert visitors into customers.
             </p>
           </div>
 

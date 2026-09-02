@@ -12,7 +12,7 @@ const values = [
     icon: Target,
     title: "Strategic Approach",
     description:
-      "Every design decision is backed by a clear understanding of your goals, audience, and market position.",
+      "Every decision, creative, material,  or digital is backed by a clear understanding of your goals,  audience, and market position.",
   },
   {
     icon: Handshake,
@@ -38,14 +38,14 @@ const process = [
   {
     icon: PenTool,
     step: "02",
-    title: "Design",
-    description: "We create concepts and solutions tailored to your brand and goals.",
+    title: "Create",
+    description: "We shape strategies, campaigns, and materials tailored to your brand and goals from concepts to production-ready assets.",
   },
   {
     icon: Rocket,
     step: "03",
     title: "Deliver",
-    description: "We launch, refine, and support you as your business grows.",
+    description: "We launch, produce, and support you as your business grows across digital, print, and every touchpoint your brand shows up in.",
   },
 ];
 
@@ -79,11 +79,11 @@ export default function AboutPage() {
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-white leading-tight">
-            A Malawian <span className="text-primary">creative agency</span> built for ambitious businesses<span className="text-primary">.</span>
+            A Malawian <span className="text-primary">marketing and brand agency</span> built for ambitious businesses<span className="text-primary">.</span>
           </h1>
 
           <p className="mt-6 text-lg text-white/70 leading-relaxed">
-            We help businesses build credibility, communicate clearly, and grow with confidence.
+            We help businesses build credibility, tell their story clearly, and grow with confidence.
           </p>
         </div>
       </section>
@@ -131,13 +131,22 @@ export default function AboutPage() {
             </h2>
 
             <p className="mt-6 text-lg leading-relaxed text-[#000f22]/70">
-              [Add the founding story here — what gap you saw in the market, why you started the
-              agency, and what the early days looked like.]
+              Nexus Brands started in 2020 with a simple belief
+              that Malawian businesses deserve the same calibre of brand and
+              marketing thinking as any agency abroad, delivered with local
+              understanding. What began as design and brand identity work
+              quickly grew as clients asked for more: campaigns, digital
+              platforms, and eventually the branded materials and stationery
+              that carry a brand into the real world.
             </p>
 
             <p className="mt-6 text-lg leading-relaxed text-[#000f22]/70">
-              [Add how the agency has grown since then — the range of businesses you've worked with,
-              what you've learned, and where things stand today.]
+              Since then, we've worked with businesses and
+              organisations across sectors delivering various projects for local
+              and international clients. Today, Nexus Brands operates as a
+              full-service marketing and brand partner: strategy, creative,
+              branded materials, and digital, working together under one
+              roof.
             </p>
           </div>
 
@@ -149,7 +158,9 @@ export default function AboutPage() {
                 Our Vision
               </span>
               <p className="mt-7 text-white/90 leading-relaxed ">
-                [Add your mission statement here — what you do, for whom, and to what end.]
+                To be Malawi's most trusted marketing and brand partner helping
+                businesses of every size build brands that compete confidently,
+                locally and beyond
               </p>
             </div>
 
@@ -158,7 +169,10 @@ export default function AboutPage() {
                 Our Mission
               </span>
               <p className="mt-7 text-white/90 leading-relaxed ">
-                [Add your mission statement here — what you do, for whom, and to what end.]
+                We help businesses build strong brands and reach their audiences
+                through strategic thinking, creative execution, branded
+                materials, and digital presence delivered with consistency,
+                care, and measurable results.
               </p>
             </div>
 

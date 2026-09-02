@@ -32,16 +32,16 @@ export default function OurWorkPage() {
 
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <span className="uppercase tracking-[0.2em] text-sm text-primary/90">
-            Nexus Brands
+            What we did for others
           </span>
 
           <h1 className="mt-6 text-4xl md:text-6xl font-extrabold text-accent">
-            Our Work<span className="text-primary">.</span>
+            Work That Moves Brands Forward<span className="text-primary">.</span>
           </h1>
 
           <p className="mt-6 text-lg text-white/70 leading-relaxed">
-            A collection of branding, design, social media, and website
-            projects built for growing businesses.
+            A collection of brand strategy, creative campaigns, branded materials, and digital work built for
+            growing businesses.
           </p>
         </div>
       </section>

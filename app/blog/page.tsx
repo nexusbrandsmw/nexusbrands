@@ -57,7 +57,7 @@ export default function BlogPage() {
           </h1>
 
           <p className="mt-6 text-lg text-white/70 leading-relaxed">
-            Thoughts, insights, and strategies on branding, design, marketing, and digital growth.
+            Thoughts, insights, and strategies on brand strategy, creative campaigns, branded materials, and business growth.
           </p>
         </div>
       </section>
